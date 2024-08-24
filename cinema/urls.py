@@ -31,8 +31,8 @@ urlpatterns = [
     path("genres/<int:pk>/", GenreDetail.as_view()),
     path("actors/", ActorList.as_view()),
     path("actors/<int:pk>/", ActorDetail.as_view()),
-    path("cinema-halls/", cinema_hall_list),
-    path("cinema-halls/<int:pk>/", cinema_hall_detail),
+    path("cinema_halls/", cinema_hall_list),
+    path("cinema_halls/<int:pk>/", cinema_hall_detail),
 ]
 
 app_name = "cinema"
