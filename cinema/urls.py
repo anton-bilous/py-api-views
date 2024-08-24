@@ -1,6 +1,14 @@
 from django.urls import path
 
-from cinema.views import movie_list, movie_detail, GenreList, GenreDetail, ActorList, ActorDetail
+from cinema.views import movie_list, movie_detail, GenreList, GenreDetail, ActorList, ActorDetail, CinemaHallViewSet
+
+cinema_hall_list = CinemaHallViewSet.as_view(actions={"get": "list", "post": "create"})
+cinema_hall_detail = CinemaHallViewSet.as_view(actions={
+    "get": "retrieve",
+    "put": "update",
+    "patch": "partial_update",
+    "delete": "destroy",
+})
 
 urlpatterns = [
     path("movies/", movie_list, name="movie-list"),
@@ -9,6 +17,8 @@ urlpatterns = [
     path("genres/<int:pk>/", GenreDetail.as_view()),
     path("actors/", ActorList.as_view()),
     path("actors/<int:pk>/", ActorDetail.as_view()),
+    path("cinema-halls/", cinema_hall_list),
+    path("cinema-halls/<int:pk>/", cinema_hall_detail),
 ]
 
 app_name = "cinema"
