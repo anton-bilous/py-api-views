@@ -59,3 +59,13 @@ class GenreList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GenreDetail(APIView):
+    def get_object(self, pk: int) -> Genre:
+        return get_object_or_404(Genre, pk=pk)
+
+    def get(self, request, pk):
+        genre = self.get_object(pk)
+        serializer = GenreSerializer(genre)
+        return Response(serializer.data, status=status.HTTP_200_OK)
