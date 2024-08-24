@@ -6,7 +6,12 @@ from rest_framework import status, generics, mixins, viewsets
 from django.shortcuts import get_object_or_404
 
 from cinema.models import Movie, Genre, Actor, CinemaHall
-from cinema.serializers import MovieSerializer, GenreSerializer, ActorSerializer, CinemaHallSerializer
+from cinema.serializers import (
+    MovieSerializer,
+    GenreSerializer,
+    ActorSerializer,
+    CinemaHallSerializer,
+)
 
 
 class MovieViewSet(viewsets.ModelViewSet):
@@ -62,7 +67,9 @@ class GenreDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class ActorList(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
+class ActorList(
+    generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin
+):
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
 

@@ -13,6 +13,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="movie",
             name="genres",
-            field=models.ManyToManyField(related_name="movies", to="cinema.genre"),
+            field=models.ManyToManyField(
+                related_name="movies", to="cinema.genre"
+            ),
         ),
     ]
