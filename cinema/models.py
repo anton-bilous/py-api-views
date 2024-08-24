@@ -4,6 +4,7 @@ from django.db import models
 class Movie(models.Model):
     title = models.CharField(max_length=255)
     genres = models.ManyToManyField("Genre", related_name="movies")
+    actors = models.ManyToManyField("Actor", related_name="movies")
     description = models.TextField()
     duration = models.IntegerField()
 
