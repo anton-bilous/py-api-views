@@ -1,11 +1,12 @@
+from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
 from django.shortcuts import get_object_or_404
 
-from cinema.models import Movie
-from cinema.serializers import MovieSerializer
+from cinema.models import Movie, Genre
+from cinema.serializers import MovieSerializer,GenreSerializer
 
 
 @api_view(["GET", "POST"])
@@ -43,3 +44,10 @@ def movie_detail(request, pk):
     if request.method == "DELETE":
         movie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class GenreList(APIView):
+    def get(self, request):
+        genres = Genre.objects.all()
+        serializer = GenreSerializer(genres, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
